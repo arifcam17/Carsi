@@ -42,7 +42,7 @@ namespace Carsi.Service.Concrete
 
 
             var userpass = await _userRepository.CheckPassword(password, email);
-            ////var userpd= _mapper.Map<UserDto>(userpass);
+           
             if (userpass == null)
             {
                 return Response<bool>.Failure("sifre veya kullanici adi hatali tekrar deneyin", 404);

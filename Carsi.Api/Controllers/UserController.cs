@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Carsi.Service.Abstract;
 using Carsi.Shared.DTOS;
@@ -27,9 +28,9 @@ namespace Carsi.Api.Controllers
             var response = await _userService.CheckUserPassword(password,email);
 
             if (response == null) {
-                return NotFound();
+                return NotFound(JsonSerializer.Serialize(response));
             }
-            return Ok(response);
+            return Ok(JsonSerializer.Serialize(response));
 
             
         }
