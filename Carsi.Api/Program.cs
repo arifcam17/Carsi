@@ -23,6 +23,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISepetRepository, SepetRepository>();
 builder.Services.AddScoped<IItemRepository, ItemRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 
 
@@ -30,7 +31,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ISepetService, SepetService>();
 builder.Services.AddScoped<IItemService, ItemService>();
-
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddScoped<IImageHelper, ImageHelper>();
 

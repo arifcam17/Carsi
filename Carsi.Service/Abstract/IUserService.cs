@@ -23,7 +23,7 @@ namespace Carsi.Service.Abstract
 
 
          
-
+       Task<Response<List<UserDto>>> GetallUserAsync();
 
 
         Task<Response<UserDto>> GetUserById(int id);

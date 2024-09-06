@@ -2,22 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Carsi.Entity.Abstract;
-using Carsi.Entity.Concrete;
 
 namespace Carsi.Entity.Concrete
 {
-    public class Sepet
+    public class Order
     {
         public int Id { get; set; }
+        public DateTime OrderDate { get; set; }
         public string UserId { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
         
-        public DateTime CreatedDate { get; set; }
-        
-        public List<Item> Items { get; set; }
-
-        public bool Confirm { get; set; }
-
-
     }
 }

@@ -12,7 +12,7 @@ namespace Carsi.Data.Concrete.Configuration
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-           // builder.HasKey(x => x.Id);
+           //  builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd(); 
             builder.Property(x => x.Name);
             
@@ -21,9 +21,9 @@ namespace Carsi.Data.Concrete.Configuration
             builder.HasData(
                 new User{
                     Id = 1,
-                    Name = "Alex",
+                    Name = "Mehmet Kara",
                     Password="123456",
-                    Email="alex@xxx"
+                    Email="memo@xxx"
 
                 },
                 new User{
@@ -38,6 +38,48 @@ namespace Carsi.Data.Concrete.Configuration
                     Name = "Arda Guler",
                     Password="123",
                     Email="arda@xxx"
+
+                },
+                new User{
+                    Id = 4,
+                    Name = "hasan",
+                    Password="1",
+                    Email="aa"
+
+                },
+                new User{
+                    Id = 5,
+                    Name = "suat",
+                    Password="suke",
+                    Email="xxx"
+
+                },
+                new User{
+                    Id = 6,
+                    Name = "Cemil",
+                    Password="78",
+                    Email="@"
+
+                },
+                new User{
+                    Id = 7,
+                    Name = "macit",
+                    Password="m",
+                    Email="157"
+
+                },
+                new User{
+                    Id = 8,
+                    Name = "haci",
+                    Password="7",
+                    Email="sabanci"
+
+                },
+                new User{
+                    Id = 9,
+                    Name = "muhtelif",
+                    Password="1923",
+                    Email="s"
 
                 }
             );

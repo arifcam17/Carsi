@@ -8,12 +8,11 @@ namespace Carsi.Shared.DTOS
 {
     public class AddSepetDto
     {
-        public int Id { get; set; }
-        public int UserId { get;set; }
+        public int ProductId { get; set; }
+        public string UserId { get;set; }
 
-       
+       public int Quantity { get; set; }
          
-       public DateTime CreatedDate { get; set; }
     }
         
 }

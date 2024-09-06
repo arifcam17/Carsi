@@ -25,8 +25,12 @@ namespace Carsi.Service.MAPPER
         CreateMap<Sepet,AddSepetDto>().ReverseMap();
 
         CreateMap<Item,ItemDto>().ReverseMap();
-
         
+       
+       
+        CreateMap<Order,OrderDto>().ReverseMap();
+
+        CreateMap<OrderItem,OrderItemDto>().ReverseMap();
         
 
        }   

@@ -32,9 +32,9 @@ namespace Carsi.Api.Controllers
             var response =await _productService.AddAsync(addProductDto);
             if (response.Succeed==false)
             {
-              return NotFound (response);
+              return NotFound (JsonSerializer.Serialize(response));
             } 
-            return Ok(response);
+            return Ok(JsonSerializer.Serialize(response));
         }
 
         [HttpDelete("{id}")]

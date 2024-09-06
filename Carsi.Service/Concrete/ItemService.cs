@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Carsi.Data.Abstract;
+using Carsi.Entity.Concrete;
 using Carsi.Service.Abstract;
 using Carsi.Shared.DTOS;
 using Carsi.Shared.Response;
@@ -15,33 +16,65 @@ namespace Carsi.Service.Concrete
     {
 
         private readonly IItemRepository _itemRepository;
+        private readonly ISepetRepository _sepetRepository;
         private readonly IMapper _mapper;
-        public ItemService(IItemRepository itemRepository, IMapper mapper)
+        public ItemService(IItemRepository itemRepository, IMapper mapper, ISepetRepository sepetRepository)
         {
             _itemRepository = itemRepository;
+            _sepetRepository=sepetRepository;
             _mapper = mapper;
         }
 
 
 
-        public Task<Response<NoContent>> AddAsync(SepetDto add)
+        public async Task<Response<NoContent>> AddAsync(AddSepetDto add)
         {
-            throw new NotImplementedException();
+            var sepet = await _sepetRepository.GetCartByUserIdAsync(add.UserId);
+            if(sepet == null)
+            {
+                return Response<NoContent>.Failure("HATA OLUSTU",404);
+            }
+            int index = sepet.Items.FindIndex(x=>x.ProductId==add.ProductId);
+            if(index <0)
+            {
+                 sepet.Items.Add(new Item{
+                    ProductId=add.ProductId,
+                    SepetId=sepet.Id,
+                    Adet=add.Quantity,
+
+                 });
+            }
+            else
+            {
+                sepet.Items[index].Adet += add.Quantity;
+            }
+             await _sepetRepository.UpdateAsync(sepet);
+             return Response<NoContent>.Success(204);
+           
         }
 
-        public Task<Response<NoContent>> ChangeQuantityAsync(int itemId, int quantity)
+        public async Task<Response<NoContent>> ChangeQuantityAsync(int itemId, int quantity)
         {
-            throw new NotImplementedException();
+           Item item = await _itemRepository.GetById(itemId);
+           item.Adet = quantity;
+           await _itemRepository.UpdateAsync(item);
+           return Response<NoContent>.Success(204);
+
         }
 
-        public Task<Response<NoContent>> ClearAsync(int userId)
+        public async Task<Response<NoContent>> ClearAsync(string userId)
         {
-            throw new NotImplementedException();
+            Sepet sepet= await  _sepetRepository.GetCartByUserIdAsync(userId);
+            sepet.Items = new List<Item>();
+            await _sepetRepository.UpdateAsync(sepet);
+            return Response<NoContent>.Success(204);
         }
 
-        public Task<Response<NoContent>> DeleteItemAsync(int itemId)
+        public async Task<Response<NoContent>> DeleteItemAsync(int itemId)
         {
-            throw new NotImplementedException();
+           Item item = await _itemRepository.GetById(itemId);
+           await _itemRepository.DeleteAsync(item);
+           return Response<NoContent>.Success(200);
         }
     }
 }

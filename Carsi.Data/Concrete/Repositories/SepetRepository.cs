@@ -20,11 +20,12 @@ namespace Carsi.Data.Concrete.Repositories
             get{ return _dbContext as CarsiDbContext; }
         }
 
-        public Task<Sepet> GetCartByUserIdAsync(int userId)
+        public Task<Sepet> GetCartByUserIdAsync(string userId)
         {
 
             var sepet=
-            CarsiDbContext.Sepets
+            CarsiDbContext
+            .Sepets
             .Where(s => s.UserId == userId)
             .Include(i => i.Items)
             .ThenInclude(p=>p.Product)

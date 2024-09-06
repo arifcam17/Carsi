@@ -9,8 +9,8 @@ namespace Carsi.Service.Abstract
 {
     public interface IItemService
     {
-       Task<Response<NoContent>> AddAsync(SepetDto add);
-        Task<Response<NoContent>> ClearAsync(int userId);
+       Task<Response<NoContent>> AddAsync(AddSepetDto add);
+        Task<Response<NoContent>> ClearAsync(string userId);
         Task<Response<NoContent>> DeleteItemAsync(int itemId);
         Task<Response<NoContent>> ChangeQuantityAsync(int itemId, int quantity);
     }

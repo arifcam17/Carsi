@@ -78,6 +78,17 @@ namespace Carsi.Service.Concrete
             return Response<UserDto>.Success(deleteduserdto, 200);
         }
 
+        public async Task<Response<List<UserDto>>> GetallUserAsync()
+        {
+            var users= await _userRepository.GetAllAsync();
+            if (users.Count == 0)
+            {
+                return Response<List<UserDto>>.Failure("kullanici listesi bulunamadi",404);
+            }
+            var usersDto= _mapper.Map<List<UserDto>>(users);
+            return Response<List<UserDto>>.Success(usersDto,200);
+        }
+
         public async Task<Response<UserDto>> GetUserById(int id)
         {
             var user = await _userRepository.GetById(id);

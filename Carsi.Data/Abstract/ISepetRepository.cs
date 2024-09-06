@@ -8,6 +8,6 @@ namespace Carsi.Data.Abstract
 {
     public interface ISepetRepository: IGenericRepository<Sepet>
     {
-        Task<Sepet> GetCartByUserIdAsync(int userId);
+        Task<Sepet> GetCartByUserIdAsync(string userId);
     }
 }

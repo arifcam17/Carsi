@@ -11,8 +11,10 @@ namespace Carsi.Service.Abstract
     {
         
 
-        Task<Response<SepetDto>> GetSepetByUserId(int userId);
-         Task<Response<NoContent>> InitializeSepetAsync(int userId);
+        Task<Response<SepetDto>> GetSepetByUserId(string userId);
+
+        //kisiye ozelsepet
+         Task<Response<NoContent>> InitializeSepetAsync(string userId);
         
     }
 }
